@@ -26,7 +26,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -37,7 +37,18 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if(empty($data['name']) OR empty($data['categoria']) OR (empty($data['prezzoacquisto'])) OR (empty($data['prezzovendita'])) OR (empty($data['disp']))){
+            return back()->withInput();
+        }
+        $itemNew = new Item;
+        $itemNew->nomeprodotto = $data['name'];
+        $itemNew->categoria = $data['categoria'];
+        $itemNew->prezzoacquisto = $data['prezzoacquisto'];
+        $itemNew->prezzovendita = $data['prezzovendita'];
+        $itemNew->disponibile = $data['disp'];
+        $itemNew->descrizione = $data['desc'];
+        $itemNew->save();
     }
 
     /**
