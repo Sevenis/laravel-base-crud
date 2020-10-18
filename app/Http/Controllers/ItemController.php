@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Item;
+
 class ItemController extends Controller
 {
     /**
@@ -13,7 +15,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $data = Item::all();
+        return view('index', compact('data'));
     }
 
     /**
